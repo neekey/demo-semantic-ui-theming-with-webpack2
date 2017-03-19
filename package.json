@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "build": "NODE_ENV=production node ./node_modules/webpack/bin/webpack --config webpack.config.js",
-    "dev": "NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server --host 0.0.0.0 --progress --colors --hot --inline --content-base=build  --history-api-fallback",
+    "dev": "NODE_ENV=development node node_modules/.bin/webpack-dev-server --open --host 0.0.0.0 --progress --colors --hot --inline --content-base=build  --history-api-fallback",
     "test": "./node_modules/.bin/mocha-webpack --opts ./test/mocha-webpack.opts --watch",
     "test:browser": "NODE_ENV=development node ./node_modules/webpack-dev-server/bin/webpack-dev-server --host 0.0.0.0 --devtool eval --config test/webpack.config.test.browser.js --progress --colors --hot --inline --content-base test  --history-api-fallback"
   },
@@ -34,8 +34,8 @@
     "less-plugin-rewrite-import": "^0.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.0",
-    "webpack-dev-server": "^1.14.1"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
     "semantic-ui-less": "^2.2.4"

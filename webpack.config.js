@@ -16,38 +16,46 @@ var webpackConfig = {
     filename: '[name].[hash:8].js',
   },
   resolve: {
-    root: ROOT_DIR,
+    modules: [ROOT_DIR, 'node_modules'],
   },
   module: {
-    loaders: [
+    rules: [
       {
-        test: /\.less/,
-        loader: 'style!css!less',
+        test: /\.(less|config)/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'less-loader',
+            options: {
+              plugins: [
+                new RewriteImportPlugin({
+                  paths: {
+                    '../../theme.config':  __dirname + '/app/semantic-ui/theme.config',
+                  },
+                }),
+              ],
+            },
+          },
+        ],
       },
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf|woff2)$/,
-        loader: 'url-loader?limit=1024&name=[name]-[hash:8].[ext]!image-webpack',
+        use: [
+          'url-loader?limit=1024&name=[name]-[hash:8].[ext]',
+          'image-webpack-loader',
+        ]
       },
       {
         test: /\.html$/,
-        loader: 'html',
+        loader: 'html-loader',
       },
       {
         test: /\.jsx?$/,
         exclude: /(node_modules|bower_components)/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {presets: ['es2015']}
-        // 'babel-loader' is also a legal name to reference
       },
-    ],
-  },
-  lessLoader: {
-    lessPlugins: [
-      new RewriteImportPlugin({
-        paths: {
-          '../../theme.config':  __dirname + '/app/semantic-ui/theme.config',
-        },
-      }),
     ],
   },
 
