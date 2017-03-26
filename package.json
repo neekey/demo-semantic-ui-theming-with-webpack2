@@ -30,11 +30,11 @@
     "html-webpack-plugin": "^2.24.1",
     "image-webpack-loader": "^1.8.0",
     "less": "^2.7.2",
-    "less-loader": "^2.2.3",
+    "less-loader": "^4.0.2",
     "less-plugin-rewrite-import": "^0.1.1",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1",
+    "webpack": "^2.3.2",
     "webpack-dev-server": "^2.4.2"
   },
   "dependencies": {
