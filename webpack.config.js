@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ROOT_DIR = path.resolve(__dirname);
 const SRC_DIR = path.resolve(__dirname, 'app');
 const BUILD_DIR = path.resolve(__dirname, 'build');
+const NODE_MODULES_DIR = path.resolve(__dirname, 'node_modules');
 
 var webpackConfig = {
   devtool: 'eval',
@@ -28,6 +29,7 @@ var webpackConfig = {
           {
             loader: 'less-loader',
             options: {
+              paths: [ROOT_DIR, NODE_MODULES_DIR],
               plugins: [
                 new RewriteImportPlugin({
                   paths: {
@@ -42,9 +44,8 @@ var webpackConfig = {
       {
         test: /\.(png|jpg|gif|woff|svg|eot|ttf|woff2)$/,
         use: [
-          'url-loader?limit=1024&name=[name]-[hash:8].[ext]',
-          'image-webpack-loader',
-        ]
+          { loader: 'file-loader' },
+        ],
       },
       {
         test: /\.html$/,
